@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  font-family: 'Share Tech Mono', monospace;
+  color: #00ff00;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Reset margin/padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+canvas#matrix {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background: black;
+  display: block;
+}
+
+/* Màn hình đăng nhập */
+#loginScreen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  box-shadow: inset 0 0 40px #00ff00;
+}
+#loginScreen h2 {
+  color: #00ff00;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  letter-spacing: 3px;
+  text-align: center;
+  width: 100%;
+}
+#loginForm {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+#loginForm input {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1.1rem;
+  color: #00ff00;
+  background: black;
+  border: 2px solid #00ff00;
+  border-radius: 5px;
+}
+#loginForm button {
+  width: 100%;
+  padding: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  background: black;
+  color: #00ff00;
+  border: 2px solid #00ff00;
+  border-radius: 5px;
+}
+#togglePassword {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #00ff00;
+  font-size: 1.2rem;
+  user-select: none;
+}
+
+#appWrapper {
+  display: none;
+}
+
+.app-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  max-width: 90vw;
+  background: #00ff00;
+  box-shadow:
+    0 0 8px #00ff00,
+    0 0 20px #00ff00,
+    0 0 30px #00ff00;
+  border-radius: 8px;
+  color: black;
+  z-index: 10;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.app-header {
+  font-weight: bold;
+  padding: 12px 20px;
+  font-size: 1.3rem;
+  letter-spacing: 1.5px;
+  border-bottom: 2px solid black;
+  background: #00aa00;
+  color: black;
+}
+.tabs {
+  display: flex;
+  background: #00ff00;
+  border-bottom: 2px solid black;
+}
+.tab {
+  flex: 1;
+  padding: 10px 0;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  border-right: 1px solid black;
+  color: black;
+  transition: background 0.3s ease;
+}
+.tab:last-child {
+  border-right: none;
+}
+.tab.active {
+  background: black;
+  color: #00ff00;
+}
+.tab-content {
+  padding: 20px;
+  background: black;
+  color: #00ff00;
+  font-size: 1rem;
+  min-height: 250px;
+  border-radius: 0 0 8px 8px;
+  box-shadow:
+    inset 0 0 10px #00ff00;
+  display: none;
+  gap: 20px;
+}
+.tab-content.active {
+  display: flex;
+}
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 1rem;
+  font-family: 'Share Tech Mono', monospace;
+  border: 2px solid #00ff00;
+  background: black;
+  color: #00ff00;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+input[type="text"]:focus {
+  border-color: #00ff00;
+  box-shadow: 0 0 8px #00ff00;
+}
+button {
+  background: black;
+  color: #00ff00;
+  border: 2px solid #00ff00;
+  padding: 10px 24px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  letter-spacing: 1.2px;
+  transition: background 0.3s ease, color 0.3s ease;
+  user-select: none;
+  width: 120px;
+  margin-top: 8px;
+}
+button:hover {
+  background: #00ff00;
+  color: black;
+}
+#tab-check-code form,
+#tab-delete-code form {
+  display: flex;
+  flex-direction: column;
+  max-width: 210px;
+}
+#checkCodeResult, #deleteCodeResult {
+  flex: 1;
+  border: 2px solid #00ff00;
+  border-radius: 6px;
+  padding: 14px;
+  font-family: 'Share Tech Mono', monospace;
+  color: #00ff00;
+  background: black;
+  box-shadow: inset 0 0 10px #00ff00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.1rem;
+  white-space: pre-line;
+  min-height: 230px;
+  flex-direction: column;
+}
+#tab-check-game {
+  flex-direction: column;
+}
+#tab-check-game form {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+#tab-check-game label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #00ff00;
+}
+#gameInput {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 16px;
+  color: #00ff00;
+  background: black;
+  border: 2px solid #00ff00;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+#gameInput:focus {
+  border-color: #00ff00;
+  box-shadow: 0 0 12px #00ff00;
+}
+#startBtn {
+  width: 140px;
+  padding: 12px 24px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  color: #00ff00;
+  background: black;
+  border: 2px solid #00ff00;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+#startBtn:hover {
+  background: #00ff00;
+  color: black;
+}
+#resultBox {
+  border: 2px solid #00ff00;
+  border-radius: 8px;
+  padding: 20px;
+  font-family: 'Share Tech Mono', monospace;
+  color: #00ff00;
+  background: black;
+  box-shadow: inset 0 0 14px #00ff00;
+  white-space: pre-line;
+  min-height: 150px;
+  max-height: 180px;
+  overflow-y: auto;
+  font-size: 15px;
+}
+@keyframes blinking {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.blinking-code {
+  font-weight: bold;
+  font-size: 1.4rem;
+  animation: blinking 1s infinite;
+  letter-spacing: 3px;
+  font-family: 'Share Tech Mono', monospace;
+  color: #00ff00;
+}
