@@ -9,7 +9,7 @@ loginForm.addEventListener('submit', (e) => {
   const username = loginForm.username.value.trim();
   const password = loginForm.password.value.trim();
 
-  if (username === 'funkaka123' && password === 'Aa123456') {
+  if (username === 'funkaka123' && password === '123456789') {
     // Đăng nhập thành công, ẩn màn hình login, hiện app
     loginScreen.style.display = 'none';
     appWrapper.style.display = 'block';
